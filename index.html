@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLADE - Swords and Axes</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: #ffd700;
+        }
+        .swords-section {
+            padding: 50px;
+        }
+        .sword-detail {
+            margin-bottom: 20px;
+        }
+        .sword-detail h2 {
+            font-size: 24px;
+            color: #ffd700;
+        }
+        .sword-detail p {
+            font-size: 18px;
+        }
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #c0c0c0;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BLADE</h1>
+    </div>
+    <div class="swords-section">
+        <div class="sword-detail">
+            <h2>Sword of Valor</h2>
+            <p>A legendary sword forged in the fires of Mount Doom. Perfect for those who seek glory in battle.</p>
+        </div>
+        <div class="sword-detail">
+            <h2>Axe of Destruction</h2>
+            <p>A mighty axe capable of cleaving through the toughest armor. Ideal for those who prefer a more direct approach.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = [];
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                document.body.appendChild(star);
+                stars.push(star);
+            }
+
+            document.addEventListener('mousemove', function(e) {
+                stars.forEach(star => {
+                    const x = e.clientX - star.offsetLeft;
+                    const y = e.clientY - star.offsetTop;
+                    const distance = Math.sqrt(x * x + y * y);
+                    const force = Math.max(0, (200 - distance) / 200);
+                    star.style.transform = `translate(-50%, -50%) scale(${force})`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
